@@ -2,6 +2,7 @@ package ua.com.alevel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,24 +12,8 @@ public class Main {
         map.put("three", "три");
         map.put("four", "четыре");
         map.put("five", "пять");
-        replaceKeyValue(map);
+        System.out.println(map);
+        map = map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+        System.out.println(map); // it is worked if map does not have duplicate keys
     }
-
-    public static void replaceKeyValue(Map<String, String> temp) {
-        String[] keys = new String[temp.size()];
-        String[] values = new String[temp.size()];
-        for (int i = 0; i < temp.size(); i++) {
-            System.out.println("Key: " + temp.keySet());
-            System.out.println("Value: " + temp.values());
-            keys[i] = temp.keySet().toString();
-            values[i] = temp.values().toString();
-            temp.clear();
-            temp.put(values[i], keys[i]);
-            System.out.println("Key: " + temp.keySet());
-            System.out.println("Value: " + temp.values());
-        }
-
-    }
-
-
 }
